@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export const MaterialSchema = new mongoose.Schema({
+export const ConsumiblesSchema = new mongoose.Schema({
     nombre: { type: String, required: true },
     codigo_barras: { type: String, required: true },
     fotografia: { type: String, required: true },
@@ -16,7 +16,7 @@ export const MaterialSchema = new mongoose.Schema({
     observaciones: { type: String, required: true },
 });
 
-export interface Material extends mongoose.Document {
+export interface Consumibles extends mongoose.Document {
     readonly nombre: String;
     readonly codigo_barras: String;
     readonly fotografia: String;
@@ -33,7 +33,7 @@ export interface Material extends mongoose.Document {
   }
 
 
-export class MaterialDTO  {
+export class ConsumiblesDTO  {
     readonly nombre: String;
     readonly codigo_barras: String;
     readonly fotografia: String;

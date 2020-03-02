@@ -10,7 +10,7 @@ export const ProveedoresSchema = new mongoose.Schema({
     observaciones: { type: String, required: true }
 });
 
-export interface Provedoores extends mongoose.Document {
+export interface Proveedores extends mongoose.Document {
     readonly nombre: String;
     readonly telefono: String;
     readonly correo: String;
@@ -21,7 +21,7 @@ export interface Provedoores extends mongoose.Document {
   }
 
 
-export class ProvedooresDTO  {
+export class ProveedoresDTO  {
     readonly nombre: String;
     readonly telefono: String;
     readonly correo: String;
