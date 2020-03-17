@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 export class EquipoService extends InventarioCService<Equipo, EquipoDTO>{
-    constructor(@InjectModel('Consumibles') private readonly equipoModel: Model<Equipo>) {
+    constructor(@InjectModel('Equipo') private readonly equipoModel: Model<Equipo>) {
         super(equipoModel);
     }
 }
