@@ -8,12 +8,13 @@ import { ProveedoresModule } from './inventario/proveedores/proveedores.module';
 import { LoginModule } from './inventario/login.module';
 import { ConsumiblesModule } from './inventario/consumibles/consumibles.module';
 import { ReactivoModule } from './inventario/reactivo/reactivo.module';
+import { ImagesModule } from './inventario/images/images.module';
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/medical-inventory', { useNewUrlParse: true}),
     MaterialModule, ProveedoresModule, LoginModule, ConsumiblesModule,
-    EquipoModule, ReactivoModule
+    EquipoModule, ReactivoModule, ImagesModule
   ],
   controllers: [AppController],
   providers: [AppService],

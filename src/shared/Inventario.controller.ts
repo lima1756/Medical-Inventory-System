@@ -27,8 +27,8 @@ export class InventarioController <DTO, Type extends Document, Service extends I
     }
 
     @Put(":id")
-    async edit(@Param('id', new ValidateObjectId()) id, @Body() materialDTO: DTO){
-        const editedMaterial = await this.service.edit(id, materialDTO);
+    async edit(@Param('id', new ValidateObjectId()) id, @Body() dto: DTO){
+        const editedMaterial = await this.service.edit(id, dto);
         if (!editedMaterial) {
             throw new NotFoundException('Object does not exist!');
         }
