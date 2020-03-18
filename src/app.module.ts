@@ -5,10 +5,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MaterialModule } from './inventario/material/material.module';
 import { EquipoModule } from './inventario/equipo/equipo.module';
 import { ProveedoresModule } from './inventario/proveedores/proveedores.module';
-import { LoginModule } from './inventario/login.module';
+import { LoginModule } from './login/login.module';
 import { ConsumiblesModule } from './inventario/consumibles/consumibles.module';
 import { ReactivoModule } from './inventario/reactivo/reactivo.module';
-import { ImagesModule } from './inventario/images/images.module';
+import { ImagesModule } from './images/images.module';
 
 @Module({
   imports: [
