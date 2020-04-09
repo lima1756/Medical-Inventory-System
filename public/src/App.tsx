@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './resources/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Switch, Route } from 'react-router-dom';
@@ -6,9 +6,10 @@ import Laboratorio from './pages/Laboratorio';
 import Home from './pages/Home';
 import Contacto from './pages/Contacto';
 import Materiales from './pages/Materiales';
-import Item from './pages/Item';
-import Reservaciones from './pages/Reservaciones';
+import ItemList from './pages/ItemLIst';
 import MainBar from './components/MainBar';
+import Item from './components/Item';
+import NoMatch from './pages/NoMatch';
 
 
 function App() {
@@ -16,17 +17,24 @@ function App() {
         <div className="App h-100">
             <MainBar/>
             <Switch>
-                <Route path={"/"} exact={true} component={Home} />
-                <Route path={"/laboratorio"} exact={true} component={Laboratorio} />
-                <Route path={"/materiales"} exact={true} component={Materiales} />
-                <Route path={"/materiales/material"} exact={true} render={(props) => <Item {...props} type={"material"} />} />
-                <Route path={"/materiales/consumibles"} exact={true} render={(props) => <Item {...props} type={"material"} />} />
-                <Route path={"/materiales/reactivo"} exact={true} render={(props) => <Item {...props} type={"material"} />} />
-                <Route path={"/materiales/equipo"} exact={true} render={(props) => <Item {...props} type={"material"} />} />
-                <Route path={"/materiales/proveedores"} exact={true} render={(props) => <Item {...props} type={"material"} />} />
-                <Route path={"/materiales/reporte"} exact={true} render={(props) => <Item {...props} type={"material"} />} />
-                <Route path={"/reservaciones"} exact={true} component={Reservaciones} />
-                <Route path={"/contacto"} exact={true} component={Contacto} />
+                <Route path="/" exact={true} component={Home} />
+                <Route path="/laboratorio" exact={true} component={Laboratorio} />
+                <Route path="/materiales" exact={true} component={Materiales} />
+                <Route path="/contacto" exact={true} component={Contacto} />
+                <Route path="/materiales/material" exact={true} render={(props) => <ItemList {...props} type="material" />} />
+                <Route path="/materiales/consumibles" exact={true} render={(props) => <ItemList {...props} type="consumibles" />} />
+                <Route path="/materiales/reactivos" exact={true} render={(props) => <ItemList {...props} type="reactivos" />} />
+                <Route path="/materiales/equipo" exact={true} render={(props) => <ItemList {...props} type="equipo" />} />
+                <Route path="/materiales/proveedores" exact={true} render={(props) => <ItemList {...props} type="proveedores" />} />
+                {/* <Route path="/materiales/reporte" exact={true} render={(props) => <ItemList {...props} type="reporte" />} /> */}
+                <Route path="/materiales/material/:id" children={<Item type="material" />} />
+                <Route path="/materiales/consumibles/:id" children={<Item type="consumibles" />} />
+                <Route path="/materiales/reactivo/:id" children={<Item type="reactivo" />} />
+                <Route path="/materiales/equipo/:id" children={<Item type="equipo" />} />
+                <Route path="/materiales/proveedores/:id" children={<Item type="proveedores" />} />
+                <Route path="*">
+                    <NoMatch />
+                </Route>
             </Switch>
         </div>
     );

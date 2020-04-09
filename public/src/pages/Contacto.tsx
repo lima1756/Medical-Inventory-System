@@ -1,6 +1,6 @@
 import React from 'react';
 import '../resources/contacto.css'
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { IconContext } from "react-icons";
 import { MdPersonPin } from "react-icons/md"
 

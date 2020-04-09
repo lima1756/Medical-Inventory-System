@@ -43,9 +43,9 @@ function Home() {
                         <Card.Img variant="top" src={imgLaboratorio} />
                         <Card.Body>
                             <LinkContainer to="/laboratorio">
-                                <a>
+                                <button className="link-button">
                                     <Card.Title>Laboratorio</Card.Title>
-                                </a>
+                                </button>
                             </LinkContainer>
                         </Card.Body>
                     </Card>
@@ -55,9 +55,9 @@ function Home() {
                         <Card.Img variant="top" src={imgMateriales} />
                         <Card.Body>
                             <LinkContainer to="/materiales">
-                                <a>
+                                <button className="link-button">
                                     <Card.Title>Equipo/Materiales</Card.Title>
-                                </a>
+                                </button>
 
                             </LinkContainer>
                         </Card.Body>
@@ -78,9 +78,9 @@ function Home() {
                         <Card.Img variant="top" src={imgContacto} />
                         <Card.Body>
                             <LinkContainer to="/contacto">
-                                <a>
+                                <button className="link-button">
                                     <Card.Title>Contacto</Card.Title>
-                                </a>
+                                </button>
                             </LinkContainer>
                         </Card.Body>
                     </Card>

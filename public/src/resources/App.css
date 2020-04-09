@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+a, .link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  color: #007bff;
+}
+
+a:hover, .link-button:hover,
+a:focus, .link-button:focus {
+  text-decoration: underline;
+  color: #0056b3;
+}

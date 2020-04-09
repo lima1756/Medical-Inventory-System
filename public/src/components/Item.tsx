@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-type MaterialProps = {
+type Item = {
     type: string
 }
 
-function Material(props: MaterialProps) {
+function Item(props: Item) {
     return (<div></div>);
 }
 
-export default Material;
+export default Item;
