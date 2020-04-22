@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './resources/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Switch, Route } from 'react-router-dom';
@@ -10,12 +10,27 @@ import ItemList from './pages/ItemLIst';
 import MainBar from './components/MainBar';
 import Item from './components/Item';
 import NoMatch from './pages/NoMatch';
+import SignInModal from './components/SignInModal';
 
 
 function App() {
+
+    const [ signInShow , setSignInShow ] = useState(false);
+    const [ loggedIn , setLoggedIn ] = useState(localStorage.getItem("token")!=null);
+    const handleSignInClose = () => {setSignInShow(false);}
+    const handleLoginModalLogout = () => {
+        if(loggedIn){
+            localStorage.clear();
+            setLoggedIn(false);
+        }
+        else {
+            setSignInShow(true);
+        }
+    }
+
     return (
         <div className="App h-100">
-            <MainBar/>
+            <MainBar signInLogOut={handleLoginModalLogout} loggedIn={loggedIn}/>
             <Switch>
                 <Route path="/" exact={true} component={Home} />
                 <Route path="/laboratorio" exact={true} component={Laboratorio} />
@@ -36,6 +51,7 @@ function App() {
                     <NoMatch />
                 </Route>
             </Switch>
+            <SignInModal show={signInShow} handleClose={handleSignInClose}/>
         </div>
     );
 }

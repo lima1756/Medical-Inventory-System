@@ -4,7 +4,13 @@ import { Navbar, Nav, NavDropdown, Form, Button } from 'react-bootstrap';
 import ImageRetriever from '../utils/ImageRetriever'
 import { LinkContainer } from 'react-router-bootstrap'
 
-function MainBar() {
+type MainBarProps = {
+    loggedIn: boolean,
+    signInLogOut: (()=>void)
+}
+
+
+function MainBar(props: MainBarProps) {
 
     const [logo, setLogo] = useState("");
 
@@ -55,7 +61,7 @@ function MainBar() {
                         </LinkContainer>
                     </Nav>
                     <Form inline>
-                        <Button variant="outline-primary">SignIn</Button>
+                        <Button variant="outline-primary" onClick={props.signInLogOut}>{!props.loggedIn?"SignIn":"LogOut"}</Button>
                     </Form>
                 </Navbar.Collapse>
             </Navbar>

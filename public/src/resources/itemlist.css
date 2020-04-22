@@ -4,8 +4,13 @@
 }
 
 #item{
-    margin: 1em 0;
-    border: 1px thin gray;
+    padding: .3em;
+    margin: 1.2em;
+    border: 1px solid gray;
+}
+
+#item:hover{
+    cursor: pointer;
 }
 
 #item-image{

@@ -10,9 +10,9 @@ function Materiales() {
             <Card >
                 <Card.Body>
                     <LinkContainer to={"/materiales/" + op.split(" ")[0].toLowerCase()}>
-                        <a>
+                        <button className="link-button"> 
                             <Card.Title>{op}</Card.Title>
-                        </a>
+                        </button>
                     </LinkContainer>
                 </Card.Body>
             </Card>
