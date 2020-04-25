@@ -37,8 +37,8 @@ function MainBar(props: MainBarProps) {
                             <LinkContainer to="/materiales/material">
                                 <NavDropdown.Item >Material</NavDropdown.Item>
                             </LinkContainer>
-                            <LinkContainer to="/materiales/reactivo">
-                                <NavDropdown.Item >Reactivo</NavDropdown.Item>
+                            <LinkContainer to="/materiales/reactivos">
+                                <NavDropdown.Item >Reactivos</NavDropdown.Item>
                             </LinkContainer>
                             <LinkContainer to="/materiales/equipo">
                                 <NavDropdown.Item >Equipo</NavDropdown.Item>

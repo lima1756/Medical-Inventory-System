@@ -1,7 +1,16 @@
 class Laboratorio {
-    public _id: string="";
-    public nombre: String="";
-    public url: String="";
+    public static cols = [
+        {
+            name: "nombre",
+            text: "Nombre",
+            readonly: false
+        },
+        {
+            name: "url",
+            text: "URL",
+            readonly: false
+        }
+    ]
 }
 
 export default Laboratorio;

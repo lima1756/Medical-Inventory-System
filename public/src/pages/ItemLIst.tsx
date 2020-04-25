@@ -3,44 +3,7 @@ import "../resources/itemlist.css"
 import axios from 'axios';
 import { Container, Form } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import Material from '../types/Material.type';
-import Consumibles from '../types/Consumibles.type'
-import Reactivo from '../types/Reactivo.type';
-import Equipo from '../types/Equipo.type';
-import Proveedor from '../types/Proovedor.type';
-
-const identifiers = {
-    material: {
-        header: "Materiales",
-        type: Material,
-        request: "/inventario/material",
-        to: "/materiales/material/"
-    },
-    consumibles: {
-        header: "Consumibles",
-        type: Consumibles,
-        request: "/inventario/consumibles",
-        to: "/materiales/consumibles/"
-    },
-    reactivos: {
-        header: "Reactivos",
-        type: Reactivo,
-        request: "/inventario/reactivo",
-        to: "/materiales/reactivos/"
-    },
-    equipo: {
-        header: "Equipo",
-        type: Equipo,
-        request: "/inventario/equipo",
-        to: "/materiales/equipo/"
-    },
-    proveedores: {
-        header: "Proveedores",
-        type: Proveedor,
-        request: "/proveedores",
-        to: "/materiales/proveedores/"
-    }
-}
+import identifiers from '../types/Identifiers.type'
 
 type ItemListProps = {
     type: keyof typeof identifiers
@@ -48,7 +11,7 @@ type ItemListProps = {
 
 function ItemList(props: ItemListProps) {
     const identifier = identifiers[props.type];
-    let [items, setItems] = useState<Array<typeof identifier.type>>([]);
+    let [items, setItems] = useState<Array<any>>([]);
     let [search, setSearch] = useState("");
 
 
@@ -58,37 +21,35 @@ function ItemList(props: ItemListProps) {
         }).catch(err=>{
             console.log(err);
         })
-    });
+    }, [identifier.request]);
 
     const rows = items.filter((item)=>{
         if(search.length === 0)
             return true;
         const regexp = new RegExp(search);
-        const i = item as unknown as any;
         if("nombre" in item && "codigo_barras" in item){
-            return regexp.test(i.nombre) || regexp.test(i.codigo_barras)
+            return regexp.test(item.nombre) || regexp.test(item.codigo_barras)
         }
         else if ("nombre" in item){
-            return regexp.test(i.nombre);
+            return regexp.test(item.nombre);
         }
         return  false;
     }).map((item, id) => {
-        const i = item as unknown as any;
         return (
-            <LinkContainer to={"/materiales/"+props.type+"/"+i._id} key={i._id}>
-                <div id="item">
+            <LinkContainer to={"/materiales/"+props.type+"/"+item._id} key={item._id}>
+                <div className="list-item">
                      {
-                        "fotografia" in item && <div id="item-image">
-                            <span className="helper"></span>
+                        "fotografia" in item && <div className="list-item-image">
+                            <span className="vertical-center-helper"></span>
                             <img
-                                        src={i.fotografia}
+                                        src={item.fotografia}
                                         className="d-inline-block"
                                         alt=""
                                     />
                             
                         </div>
                     }
-                    <p>{i.nombre}</p>
+                    <p>{item.nombre}</p>
                 </div>
             </LinkContainer>
         )
@@ -97,7 +58,7 @@ function ItemList(props: ItemListProps) {
     return (
         <Container fluid id="itemlist">
             <h1>{identifier.header}</h1> 
-            <Form.Control value={search} type="text" placeholder="Buscar" onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setSearch(e.target.value);}}/>
+            <Form.Control value={search} type="text" placeholder="Buscar: Nombre o codigo de barras" onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setSearch(e.target.value);}}/>
             {rows}
         </Container>
     );

@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, Dispatch, SetStateAction} from 'react';
 import { Modal, Button, Form, Alert } from 'react-bootstrap';
 import axios from 'axios';
 
 type SignInModalProps = {
     show: boolean,
-    handleClose: (()=>void)
+    handleClose: (()=>void),
+    setLoggedIn: Dispatch<SetStateAction<boolean>>
 }
 
 function SignInModal(props: SignInModalProps) {
@@ -14,7 +15,6 @@ function SignInModal(props: SignInModalProps) {
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        const form = event.currentTarget;
         event.preventDefault();
         event.stopPropagation();
         
@@ -25,6 +25,7 @@ function SignInModal(props: SignInModalProps) {
             if(res.data.token){
                 localStorage.setItem("token", res.data.token);
                 setError(false);
+                props.setLoggedIn(true);
                 props.handleClose();
             }
             else

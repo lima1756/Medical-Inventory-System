@@ -3,17 +3,17 @@
     text-align: left;
 }
 
-#item{
+.list-item{
     padding: .3em;
     margin: 1.2em;
     border: 1px solid gray;
 }
 
-#item:hover{
+.list-item:hover{
     cursor: pointer;
 }
 
-#item-image{
+.list-item-image{
     border: 1px solid black;
     margin:  0 1em 0 0 ;
     height: 6em;
@@ -24,19 +24,13 @@
 
 }
 
-.helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
-#item img {
+.list-item img {
     height: 5.4em;
     width: 5.4em;
     vertical-align: middle;
 }
 
-#item p {
+.list-item p {
     margin: 0 .5em;
     display: inline;
     font-size: x-large;

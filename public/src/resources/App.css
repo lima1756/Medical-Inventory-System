@@ -53,3 +53,9 @@ a:focus, .link-button:focus {
   text-decoration: underline;
   color: #0056b3;
 }
+
+.vertical-center-helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}

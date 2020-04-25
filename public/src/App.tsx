@@ -44,14 +44,14 @@ function App() {
                 {/* <Route path="/materiales/reporte" exact={true} render={(props) => <ItemList {...props} type="reporte" />} /> */}
                 <Route path="/materiales/material/:id" children={<Item type="material" />} />
                 <Route path="/materiales/consumibles/:id" children={<Item type="consumibles" />} />
-                <Route path="/materiales/reactivo/:id" children={<Item type="reactivo" />} />
+                <Route path="/materiales/reactivo/:id" children={<Item type="reactivos" />} />
                 <Route path="/materiales/equipo/:id" children={<Item type="equipo" />} />
                 <Route path="/materiales/proveedores/:id" children={<Item type="proveedores" />} />
                 <Route path="*">
                     <NoMatch />
                 </Route>
             </Switch>
-            <SignInModal show={signInShow} handleClose={handleSignInClose}/>
+            <SignInModal show={signInShow} handleClose={handleSignInClose} setLoggedIn={setLoggedIn}/>
         </div>
     );
 }
