@@ -9,12 +9,13 @@ import { LoginModule } from './login/login.module';
 import { ConsumiblesModule } from './inventario/consumibles/consumibles.module';
 import { ReactivoModule } from './inventario/reactivo/reactivo.module';
 import { ImagesModule } from './images/images.module';
+import { LaboratoriosModule } from './inventario/laboratorios/laboratorios.module';
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/medical-inventory', { useNewUrlParse: true}),
     MaterialModule, ProveedoresModule, LoginModule, ConsumiblesModule,
-    EquipoModule, ReactivoModule, ImagesModule
+    EquipoModule, ReactivoModule, ImagesModule, LaboratoriosModule
   ],
   controllers: [AppController],
   providers: [AppService],
