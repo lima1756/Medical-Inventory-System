@@ -21,7 +21,7 @@ const identifiers = {
     reactivos: {
         header: "Reactivos",
         type: Reactivo,
-        request: "/inventario/reactivo",
+        request: "/inventario/reactivos",
         to: "/materiales/reactivos/"
     },
     equipo: {

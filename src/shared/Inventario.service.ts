@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Model, Document } from 'mongoose';
 
 @Injectable()
@@ -8,6 +8,7 @@ export class InventarioService<Type extends Document, DTO> {
     }
 
     async add(materialDTO: DTO): Promise<Type> {
+        Logger.debug("TODO BINE");
         const obj = new this.objModel(materialDTO);
         return await obj.save();
     }

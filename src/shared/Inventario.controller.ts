@@ -1,4 +1,4 @@
-import { Post, Body, Get, Param, NotFoundException, Put, Delete } from '@nestjs/common';
+import { Post, Body, Get, Param, NotFoundException, Put, Delete,Logger } from '@nestjs/common';
 import { InventarioService } from './Inventario.service';
 import { ValidateObjectId } from './validate-object-id.pipes'
 import { Document } from 'mongoose';
@@ -9,6 +9,7 @@ export class InventarioController <DTO, Type extends Document, Service extends I
 
     @Post()
     async add(@Body() dto: DTO){
+        Logger.debug("TODO controllador");
         return await this.service.add(dto);
     }
 

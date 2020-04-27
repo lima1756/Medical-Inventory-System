@@ -58,11 +58,11 @@ function App() {
                 <Route path="/laboratorio" exact={true} children={<Laboratorio loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales" exact={true} component={Materiales} />
                 <Route path="/contacto" exact={true} component={Contacto} />
-                <Route path="/materiales/material" exact={true} render={(props) => <ItemList {...props} type="material" loggedIn={loggedIn} />} />
-                <Route path="/materiales/consumibles" exact={true} render={(props) => <ItemList {...props} type="consumibles" loggedIn={loggedIn} />} />
-                <Route path="/materiales/reactivos" exact={true} render={(props) => <ItemList {...props} type="reactivos" loggedIn={loggedIn} />} />
-                <Route path="/materiales/equipo" exact={true} render={(props) => <ItemList {...props} type="equipo" loggedIn={loggedIn} />} />
-                <Route path="/materiales/proveedores" exact={true} render={(props) => <ItemList {...props} type="proveedores" loggedIn={loggedIn} />} />
+                <Route path="/materiales/material" exact={true} render={(props) => <ItemList {...props} type="material" loggedIn={loggedIn} showNotification={showNotification} />} />
+                <Route path="/materiales/consumibles" exact={true} render={(props) => <ItemList {...props} type="consumibles" loggedIn={loggedIn} showNotification={showNotification} />} />
+                <Route path="/materiales/reactivos" exact={true} render={(props) => <ItemList {...props} type="reactivos" loggedIn={loggedIn} showNotification={showNotification} />} />
+                <Route path="/materiales/equipo" exact={true} render={(props) => <ItemList {...props} type="equipo" loggedIn={loggedIn} showNotification={showNotification} />} />
+                <Route path="/materiales/proveedores" exact={true} render={(props) => <ItemList {...props} type="proveedores" loggedIn={loggedIn} showNotification={showNotification} />} />
                 {/* <Route path="/materiales/reporte" exact={true} render={(props) => <ItemList {...props} type="reporte" />} /> */}
                 <Route path="/materiales/material/:id" children={<Item type="material" loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales/consumibles/:id" children={<Item type="consumibles" loggedIn={loggedIn} showNotification={showNotification} />} />
