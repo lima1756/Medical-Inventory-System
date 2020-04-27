@@ -21,6 +21,7 @@ function Item(props: ItemProp) {
     const [deleteModal, setDeleteModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
     const [reason, setReason] = useState("");
+    const [firstCol, setFirstCol] = useState(false);
     const history = useHistory();
 
     let form = null;
@@ -31,9 +32,13 @@ function Item(props: ItemProp) {
     useEffect(() => {
         axios.get(identifier.request + "/" + id).then(res => {
             setItem(res.data);
+            if("fotografia" in res.data || "codigo_barras" in res.data || "descripcion" in res.data){
+                setFirstCol(true);
+            }
         }).catch(err => {
             console.log(err);
         })
+        
     }, [id, identifier.request]);
 
     const startEdition = () => {
@@ -135,7 +140,7 @@ function Item(props: ItemProp) {
     return (
         <Container id="item-container">
             <Row>
-                <Col>{visualInfo}</Col>
+                {firstCol && <Col>{visualInfo}</Col>}
                 <Col><Form>{form}</Form></Col>
                 <Col>{buttons}</Col>
             </Row>
