@@ -47,7 +47,7 @@ function Item(props: ItemProp) {
     }
 
     const saveEdition = () => {
-        axios.put(identifier.request + "/" + id, { ...item }).then(res => {
+        axios.put(identifier.request + "/" + id, { ...item, "token":localStorage.getItem("token") }).then(res => {
             setItem(res.data);
             props.showNotification("Guardado Exitosamente!");
         }).catch(err => {
@@ -59,7 +59,7 @@ function Item(props: ItemProp) {
     }
 
     const deleteItem = () => {
-        axios.delete(identifier.request + "/" + id).then(res => {
+        axios.delete(identifier.request + "/" + id, {data:{"token": localStorage.getItem("token")}}).then(res => {
             // TODO: agregar al reporte
             setEditable(false);
             props.showNotification("Eliminado Exitosamente!");

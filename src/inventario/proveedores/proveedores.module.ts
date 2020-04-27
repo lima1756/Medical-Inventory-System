@@ -15,10 +15,11 @@ import { AuthenticationMiddleware } from '../../shared/authentication.middleware
 
 export class ProveedoresModule implements NestModule{
   configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
-    consumer.apply(AuthenticationMiddleware).forRoutes(
-      { method: RequestMethod.POST, path: '/inventario/proveedores' },
-      { method: RequestMethod.PUT, path: '/inventario/proveedores' },
-      { method: RequestMethod.DELETE, path: '/inventario/proveedores' }
+    consumer.apply(AuthenticationMiddleware)
+    .exclude(
+      { method: RequestMethod.GET, path: '/proveedores' },
+      { method: RequestMethod.GET, path: '/proveedores/:id' },
     )
+    .forRoutes(ProveedoresController)
   }
 }

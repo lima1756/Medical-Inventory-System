@@ -15,10 +15,11 @@ import { AuthenticationMiddleware } from '../../shared/authentication.middleware
 
 export class ReactivoModule implements NestModule{
   configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
-    consumer.apply(AuthenticationMiddleware).forRoutes(
-      { method: RequestMethod.POST, path: '/inventario/reactivo' },
-      { method: RequestMethod.PUT, path: '/inventario/reactivo' },
-      { method: RequestMethod.DELETE, path: '/inventario/reactivo' }
+    consumer.apply( AuthenticationMiddleware )
+    .exclude(
+      { method: RequestMethod.GET, path: '/inventario/reactivos' },
+      { method: RequestMethod.GET, path: '/inventario/reactivos/:id' },
     )
+    .forRoutes(ReactivoController)
   }
 }

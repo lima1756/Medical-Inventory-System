@@ -15,10 +15,11 @@ import { AuthenticationMiddleware } from '../../shared/authentication.middleware
 
 export class MaterialModule implements NestModule{
   configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
-    consumer.apply(AuthenticationMiddleware).forRoutes(
-      { method: RequestMethod.POST, path: '/inventario/material' },
-      { method: RequestMethod.PUT, path: '/inventario/material' },
-      { method: RequestMethod.DELETE, path: '/inventario/material' }
+    consumer.apply(AuthenticationMiddleware)
+    .exclude(
+      { method: RequestMethod.GET, path: 'inventario/material' },
+      { method: RequestMethod.GET, path: 'inventario/material/:id' },
     )
+    .forRoutes(MaterialController)
   }
 }

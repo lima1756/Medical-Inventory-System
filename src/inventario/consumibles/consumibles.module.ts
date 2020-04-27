@@ -16,10 +16,11 @@ import { AuthenticationMiddleware } from '../../shared/authentication.middleware
 
 export class ConsumiblesModule implements NestModule{
   configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
-    consumer.apply(AuthenticationMiddleware).forRoutes(
-      { method: RequestMethod.POST, path: '/inventario/consumibles' },
-      { method: RequestMethod.PUT, path: '/inventario/consumibles' },
-      { method: RequestMethod.DELETE, path: '/inventario/consumibles' }
+    consumer.apply(AuthenticationMiddleware)
+    .exclude(
+      { method: RequestMethod.GET, path: '/inventario/consumibles' },
+      { method: RequestMethod.GET, path: '/inventario/consumibles/:id' },
     )
+    .forRoutes(ConsumiblesController)
   }
 }

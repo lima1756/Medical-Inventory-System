@@ -15,10 +15,11 @@ import { AuthenticationMiddleware } from '../../shared/authentication.middleware
 
 export class EquipoModule implements NestModule{
   configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
-    consumer.apply(AuthenticationMiddleware).forRoutes(
-      { method: RequestMethod.POST, path: '/inventario/equipo' },
-      { method: RequestMethod.PUT, path: '/inventario/equipo' },
-      { method: RequestMethod.DELETE, path: '/inventario/equipo' }
+    consumer.apply(AuthenticationMiddleware)
+    .exclude(
+      { method: RequestMethod.GET, path: '/inventario/equipo' },
+      { method: RequestMethod.GET, path: '/inventario/equipo/:id' },
     )
+    .forRoutes(EquipoController)
   }
 }

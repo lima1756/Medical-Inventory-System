@@ -27,7 +27,13 @@ function Image(props: ImageProps) {
     }
 
     const save = () => {
-        axios.put("/images/" + props.name, {"name": props.name, "url": img}).then(res => {
+        axios.put("/images/" + props.name, 
+            {
+                "name": props.name, 
+                "url": img,
+                "token": localStorage.getItem("token")
+            }
+        ).then(res => {
             setImg(res.data.url);
             setCopy(res.data.url);
             setModalShow(false);

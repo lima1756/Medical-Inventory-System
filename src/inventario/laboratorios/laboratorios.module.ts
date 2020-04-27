@@ -14,11 +14,12 @@ import { AuthenticationMiddleware } from 'src/shared/authentication.middleware';
 })
 export class LaboratoriosModule implements NestModule{
   configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
-    consumer.apply(AuthenticationMiddleware).forRoutes(
-      { method: RequestMethod.POST, path: '/laboratorios' },
-      { method: RequestMethod.PUT, path: '/laboratorios' },
-      { method: RequestMethod.DELETE, path: '/laboratorios' }
+    consumer.apply(AuthenticationMiddleware)
+    .exclude(
+      { method: RequestMethod.GET, path: '/laboratorios' },
+      { method: RequestMethod.GET, path: '/laboratorios/:id' },
     )
+    .forRoutes(LaboratoriosController)
   }
 }
 

@@ -11,7 +11,7 @@ export class AuthenticationMiddleware implements NestMiddleware {
     const token = req.get("token") || req.body.token;
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded)=>{
         if(err){
-            const status = err.status || 500;
+            const status = err.status || 401;
             const message = err.message || 'Sorry we were unable to process your request.';
             return res.status(status).send({
                 message,
