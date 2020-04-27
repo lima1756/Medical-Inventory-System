@@ -8,7 +8,6 @@ export class InventarioService<Type extends Document, DTO> {
     }
 
     async add(materialDTO: DTO): Promise<Type> {
-        Logger.debug("TODO BINE");
         const obj = new this.objModel(materialDTO);
         return await obj.save();
     }

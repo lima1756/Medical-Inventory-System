@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 function ImageRetriever(id: string, setter: React.Dispatch<React.SetStateAction<string>>){
-    axios.get("/images/name/"+id).then(res=>{
+    axios.get("/images/"+id).then(res=>{
       setter(res.data.url);
     }).catch(err=>{
       console.log(err);

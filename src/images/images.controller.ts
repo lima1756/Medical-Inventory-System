@@ -1,20 +1,34 @@
-import { Controller, Get, Param, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Param, Body, NotFoundException, Post, Put } from '@nestjs/common';
 import { ImagesService } from './images.service'
 import { ImageDTO, Image } from './image.schema'
 import { InventarioController } from 'src/shared/Inventario.controller'
 
 @Controller('images')
-export class ImagesController extends InventarioController<ImageDTO, Image, ImagesService>{
+export class ImagesController{
     constructor(private imagesService: ImagesService){
-        super(imagesService);
+        
     }
 
-    @Get("name/:name")
-    async getByName(@Param('name') name : String) {
-        const material = await this.imagesService.getByName(name);
-        if (!material) {
+    @Get(":name")
+    async getByName(@Param('name') name : string) {
+        const img = await this.imagesService.getByName(name);
+        if (!img) {
             throw new NotFoundException('Object does not exist!');
         }
-        return material;
+        return img;
+    }
+
+    @Post()
+    async add(@Body() dto: ImageDTO){
+        return await this.imagesService.add(dto);
+    }
+
+    @Put(":name")
+    async edit(@Param('name') name : string, @Body() dto: ImageDTO){
+        const editedImage = await this.imagesService.edit(name, dto);
+        if (!editedImage) {
+            throw new NotFoundException('Object does not exist!');
+        }
+        return editedImage;
     }
 }

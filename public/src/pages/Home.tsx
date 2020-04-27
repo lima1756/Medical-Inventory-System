@@ -1,46 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
-import ImageRetriever from '../utils/ImageRetriever'
+import Image from '../components/Image';
 
-function Home() {
-    const [img1, setImg1] = useState("");
-    const [img2, setImg2] = useState("");
-    const [img3, setImg3] = useState("");
-    const [imgLaboratorio, setImgLaboratorio] = useState("");
-    const [imgMateriales, setImgMateriales] = useState("");
-    const [imgReservaciones, setImgReservaciones] = useState("");
-    const [imgContacto, setImgContacto] = useState("");
-    ImageRetriever("home-img1", setImg1);
-    ImageRetriever("home-img2", setImg2);
-    ImageRetriever("home-img3", setImg3);
-    ImageRetriever("home-laboratorio", setImgLaboratorio);
-    ImageRetriever("home-materiales", setImgMateriales);
-    ImageRetriever("home-reservaciones", setImgReservaciones);
-    ImageRetriever("home-contacto", setImgContacto);
+type HomeProps = {
+    loggedIn: boolean
+}
+
+function Home(props: HomeProps) {
+
     return (
-        <Container className="h-100" fluid>
-            <Row className="d-none d-md-block h-75">
-                <img
-                    src={img1}
-                    className="d-inline-block"
-                    alt=""
-                />
-                <img
-                    src={img2}
-                    className="d-inline-block"
-                    alt=""
-                />
-                <img
-                    src={img3}
-                    className="d-inline-block"
-                    alt=""
-                />
+        <Container className="h-80" fluid>
+            <Row className="d-none d-md-flex h-75 overflow-hidden">
+                <Col md={8} className="h-100" style={{paddingRight:1}}>
+                    <Image className="fit-img" name="home-img1" loggedIn={props.loggedIn} />
+                </Col>
+                <Col md={4} className="h-100" style={{paddingLeft:1}}> 
+                    <Image className="fit-img h-50" name="home-img2" loggedIn={props.loggedIn} />
+                    <Image className="fit-img h-50" name="home-img3" loggedIn={props.loggedIn} />
+                </Col>
             </Row>
             <Row className="h-25">
                 <Col xs={12} md={6} lg={3}>
                     <Card >
-                        <Card.Img variant="top" src={imgLaboratorio} />
+                        <Image className="card-img-top" name="home-laboratorio" loggedIn={props.loggedIn} />
                         <Card.Body>
                             <LinkContainer to="/laboratorio">
                                 <button className="link-button">
@@ -52,7 +35,7 @@ function Home() {
                 </Col>
                 <Col xs={12} md={6} lg={3}>
                     <Card >
-                        <Card.Img variant="top" src={imgMateriales} />
+                        <Image className="card-img-top" name="home-materiales" loggedIn={props.loggedIn} />
                         <Card.Body>
                             <LinkContainer to="/materiales">
                                 <button className="link-button">
@@ -65,7 +48,7 @@ function Home() {
                 </Col>
                 <Col xs={12} md={6} lg={3}>
                     <Card >
-                        <Card.Img variant="top" src={imgReservaciones} />
+                        <Image className="card-img-top" name="home-reservaciones" loggedIn={props.loggedIn} />
                         <Card.Body>
                             <a href="www.google.com">
                                 <Card.Title>Reservaciones</Card.Title>
@@ -75,7 +58,7 @@ function Home() {
                 </Col>
                 <Col xs={12} md={6} lg={3}>
                     <Card >
-                        <Card.Img variant="top" src={imgContacto} />
+                        <Image className="card-img-top" name="home-contacto" loggedIn={props.loggedIn} />
                         <Card.Body>
                             <LinkContainer to="/contacto">
                                 <button className="link-button">

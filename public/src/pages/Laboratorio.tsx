@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
-import ImageRetriever from '../utils/ImageRetriever'
+import Image from '../components/Image';
 
 type LaboratorioProps = {
     loggedIn: boolean,
@@ -9,9 +9,6 @@ type LaboratorioProps = {
 }
 
 function Laboratorio(props: LaboratorioProps) {
-    const [img1, setImg1] = useState("");
-    const [img2, setImg2] = useState("");
-    const [img3, setImg3] = useState("");
     const [labs, setLabs] = useState<Array<any>>([]);
     const [newName, setNewName] = useState("");
     const [newURL, setNewURL] = useState("");
@@ -26,9 +23,6 @@ function Laboratorio(props: LaboratorioProps) {
         }).catch(err => {
             console.log(err);
         })
-        ImageRetriever("home-img1", setImg1);
-        ImageRetriever("home-img2", setImg2);
-        ImageRetriever("home-img3", setImg3);
     }, []);
 
     const saveNew = () => {
@@ -80,22 +74,16 @@ function Laboratorio(props: LaboratorioProps) {
 
     return (
         <Container className="h-100" fluid>
-            <Row className="d-none d-md-block h-25">
-                <img
-                    src={img1}
-                    className="d-inline-block"
-                    alt=""
-                />
-                <img
-                    src={img2}
-                    className="d-inline-block"
-                    alt=""
-                />
-                <img
-                    src={img3}
-                    className="d-inline-block"
-                    alt=""
-                />
+            <Row className="d-none d-md-flex h-25 overflow-hidden">
+                <Col md={4} className="h-100" style={{paddingRight:1}}>
+                    <Image className="fit-img" name="lab-img1" loggedIn={props.loggedIn} />
+                </Col>
+                <Col md={4} className="h-100" style={{paddingLeft:1, paddingRight:1}}> 
+                    <Image className="fit-img h-100" name="lab-img2" loggedIn={props.loggedIn} />
+                </Col>
+                <Col md={4} className="h-100" style={{paddingLeft:1}}> 
+                    <Image className="fit-img h-100" name="lab-img3" loggedIn={props.loggedIn} />
+                </Col>
             </Row>
             <Row className="h-75">
                 {

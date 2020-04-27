@@ -9,7 +9,6 @@ export class InventarioController <DTO, Type extends Document, Service extends I
 
     @Post()
     async add(@Body() dto: DTO){
-        Logger.debug("TODO controllador");
         return await this.service.add(dto);
     }
 

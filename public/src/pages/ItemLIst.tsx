@@ -43,14 +43,6 @@ function ItemList(props: ItemListProps) {
         })
     }
 
-    const updateForm = (field: string) => {
-        return (e: React.ChangeEvent<HTMLInputElement>) => {
-            let itemCopy = { ...formFields };
-            itemCopy[field] = e.target.value;
-            setFormFields(itemCopy);
-        }
-    }
-
     useEffect(() => {
         axios.get(identifier.request).then(res => {
             setItems(res.data);
@@ -71,7 +63,17 @@ function ItemList(props: ItemListProps) {
 
     }, [identifier]);
 
+    
+
     useEffect(() => {
+        const updateForm = (field: string) => {
+            return (e: React.ChangeEvent<HTMLInputElement>) => {
+                let itemCopy = { ...formFields };
+                itemCopy[field] = e.target.value;
+                setFormFields(itemCopy);
+            }
+        }
+
         let formConstructor = identifier.type.cols.map((col, id) => {
             return <Form.Group key={id} controlId={"form" + col.name} className="itemData">
                 <Form.Label className="font-weight-bold">{col.text}</Form.Label>
@@ -79,6 +81,8 @@ function ItemList(props: ItemListProps) {
             </Form.Group>
         }
         );
+        
+
         if ("descripcion" in identifier.type) {
             formConstructor.push(
                 <Form.Group key="5001" controlId={"formDescripcion"} className="itemData">
@@ -105,7 +109,7 @@ function ItemList(props: ItemListProps) {
         }
         setForm(formConstructor);
        
-    }, [formFields])
+    }, [formFields, identifier.type])
 
 
     const rows = items.filter((item) => {

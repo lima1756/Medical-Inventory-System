@@ -54,7 +54,7 @@ function App() {
         <div className="App h-100">
             <MainBar signInLogOut={handleLoginModalLogout} loggedIn={loggedIn} />
             <Switch>
-                <Route path="/" exact={true} component={Home} />
+                <Route path="/" exact={true} children={<Home loggedIn={loggedIn}/>} />
                 <Route path="/laboratorio" exact={true} children={<Laboratorio loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales" exact={true} component={Materiales} />
                 <Route path="/contacto" exact={true} component={Contacto} />
@@ -66,7 +66,7 @@ function App() {
                 {/* <Route path="/materiales/reporte" exact={true} render={(props) => <ItemList {...props} type="reporte" />} /> */}
                 <Route path="/materiales/material/:id" children={<Item type="material" loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales/consumibles/:id" children={<Item type="consumibles" loggedIn={loggedIn} showNotification={showNotification} />} />
-                <Route path="/materiales/reactivo/:id" children={<Item type="reactivos" loggedIn={loggedIn} showNotification={showNotification} />} />
+                <Route path="/materiales/reactivos/:id" children={<Item type="reactivos" loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales/equipo/:id" children={<Item type="equipo" loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales/proveedores/:id" children={<Item type="proveedores" loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="*">
