@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './resources/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { Toast } from 'react-bootstrap';
 import Laboratorio from './pages/Laboratorio';
 import Home from './pages/Home';
@@ -12,6 +12,7 @@ import MainBar from './components/MainBar';
 import Item from './components/Item';
 import NoMatch from './pages/NoMatch';
 import SignInModal from './components/SignInModal';
+import Reporte from './pages/Reporte';
 
 
 function App() {
@@ -19,10 +20,13 @@ function App() {
     const [signInShow, setSignInShow] = useState(false);
     const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token") != null);
     const [notifications, setNotifications] = useState<Array<JSX.Element>>([]);
+    const history = useHistory();
+
     const handleSignInClose = () => { setSignInShow(false); }
     const handleLoginModalLogout = () => {
         if (loggedIn) {
             localStorage.clear();
+            history.push("/")
             setLoggedIn(false);
         }
         else {
@@ -63,7 +67,7 @@ function App() {
                 <Route path="/materiales/reactivos" exact={true} render={(props) => <ItemList {...props} type="reactivos" loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales/equipo" exact={true} render={(props) => <ItemList {...props} type="equipo" loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales/proveedores" exact={true} render={(props) => <ItemList {...props} type="proveedores" loggedIn={loggedIn} showNotification={showNotification} />} />
-                {/* <Route path="/materiales/reporte" exact={true} render={(props) => <ItemList {...props} type="reporte" />} /> */}
+                {loggedIn && <Route path="/materiales/reporte" exact={true} children={<Reporte/>}/>}
                 <Route path="/materiales/material/:id" children={<Item type="material" loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales/consumibles/:id" children={<Item type="consumibles" loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales/reactivos/:id" children={<Item type="reactivos" loggedIn={loggedIn} showNotification={showNotification} />} />

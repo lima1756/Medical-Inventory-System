@@ -50,6 +50,11 @@ function Item(props: ItemProp) {
         axios.put(identifier.request + "/" + id, { ...item, "token":localStorage.getItem("token") }).then(res => {
             setItem(res.data);
             props.showNotification("Guardado Exitosamente!");
+            if(reason !== ""){
+                report(item, "Cantidad total modificada", reason, ()=> {})    
+            } else {
+                report(item, "Modificacion", "Objeto modificado", ()=> {})
+            }
         }).catch(err => {
             console.log(err);
             setItem(backup);
@@ -60,15 +65,27 @@ function Item(props: ItemProp) {
 
     const deleteItem = () => {
         axios.delete(identifier.request + "/" + id, {data:{"token": localStorage.getItem("token")}}).then(res => {
-            // TODO: agregar al reporte
             setEditable(false);
             props.showNotification("Eliminado Exitosamente!");
-            history.push("/materiales/" + props.type);
+            report(item, "Eliminado", reason, ()=> {history.push("/materiales/" + props.type);})
         }).catch(err => {
             console.log(err);
             props.showNotification("Error al eliminar, porfavor intente mas tarde.");
         })
 
+    }
+
+    const report = (obj: any, action: String, reason: String, callback: any) => {
+        axios.post('/report',  {
+            ...{
+                object: obj,
+                "type": identifier.header,
+                "action": action,
+                "reason": reason
+            },
+            token: localStorage.getItem("token")
+        }).then(()=>{callback()})
+        .catch(err=>{report(obj, action, reason, callback)});
     }
 
     const cancelEdition = () => {

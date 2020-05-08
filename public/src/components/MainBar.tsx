@@ -43,10 +43,10 @@ function MainBar(props: MainBarProps) {
                         <LinkContainer to="/materiales/proveedores">
                             <NavDropdown.Item >Proveedores</NavDropdown.Item>
                         </LinkContainer>
-                        <NavDropdown.Divider />
+                        {props.loggedIn && <><NavDropdown.Divider />
                         <LinkContainer to="/materiales/reporte">
                             <NavDropdown.Item >Reporte</NavDropdown.Item>
-                        </LinkContainer>
+                        </LinkContainer></>}
                     </NavDropdown>
 
                     <Nav.Link href="https://www.google.com">Reservaciones</Nav.Link>

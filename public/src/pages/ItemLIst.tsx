@@ -35,12 +35,27 @@ function ItemList(props: ItemListProps) {
             const cloneItems = JSON.parse(JSON.stringify(items));
             cloneItems.push(res.data);
             setItems(cloneItems);
+            report(res.data);
             props.showNotification("Guardado Exitosamente!");
             setNewModal(false);
         }).catch(err => {
             console.log(err);
             props.showNotification("Error al guardar, porfavor intente mas tarde.");
         })
+
+        
+    }
+
+    const report = (obj: any) => {
+        axios.post('/report',  {
+            ...{
+                object: obj,
+                "type": identifier.header,
+                "action": "Creacion",
+                "reason": "Nuevo elemento añadido al inventario"
+            },
+            token: localStorage.getItem("token")
+        }).catch(err=>{report(obj)});
     }
 
     useEffect(() => {
