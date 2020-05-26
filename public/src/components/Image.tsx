@@ -53,7 +53,7 @@ function Image(props: ImageProps) {
         setImg(e.target.value);
     }
 
-    const imgLink = img == "" ? "/spinner.gif" : img;
+    const imgLink = img == "" ? "/spinner.svg" : img;
 
     return (
         <>
