@@ -53,10 +53,12 @@ function Image(props: ImageProps) {
         setImg(e.target.value);
     }
 
+    const imgLink = img == "" ? "/spinner.gif" : img;
+
     return (
         <>
             <img
-                src={img}
+                src={imgLink}
                 className={props.className}
                 alt=""
                 onClick={openModal}
