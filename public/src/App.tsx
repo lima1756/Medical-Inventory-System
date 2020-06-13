@@ -60,7 +60,7 @@ function App() {
             <Switch>
                 <Route path="/" exact={true} children={<Home loggedIn={loggedIn}/>} />
                 <Route path="/laboratorio" exact={true} children={<Laboratorio loggedIn={loggedIn} showNotification={showNotification} />} />
-                <Route path="/materiales" exact={true} component={Materiales} />
+                <Route path="/materiales" exact={true} render={(props) => <Materiales {...props} loggedIn={loggedIn}  />} />
                 <Route path="/contacto" exact={true} component={Contacto} />
                 <Route path="/materiales/material" exact={true} render={(props) => <ItemList {...props} type="material" loggedIn={loggedIn} showNotification={showNotification} />} />
                 <Route path="/materiales/consumibles" exact={true} render={(props) => <ItemList {...props} type="consumibles" loggedIn={loggedIn} showNotification={showNotification} />} />

@@ -27,7 +27,7 @@ export class ImagesController{
     async edit(@Param('name') name : string, @Body() dto: ImageDTO){
         const editedImage = await this.imagesService.edit(name, dto);
         if (!editedImage) {
-            throw new NotFoundException('Object does not exist!');
+            this.add(dto);
         }
         return editedImage;
     }

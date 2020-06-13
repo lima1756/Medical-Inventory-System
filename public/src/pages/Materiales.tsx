@@ -3,8 +3,14 @@ import "../resources/materiales.css"
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 
-function Materiales() {
-    const options = ["Material", "Reactivos", "Equipo", "Consumibles", "Proovedores", "Reporte de modificaciones y actualizaciones"];
+type MaterialesProps = {
+    loggedIn: boolean,
+}
+
+function Materiales(props: MaterialesProps) {
+    const options = props.loggedIn ?
+        ["Material", "Reactivos", "Equipo", "Consumibles", "Proovedores", "Reporte de modificaciones y actualizaciones"] :
+        ["Material", "Reactivos", "Equipo", "Consumibles", "Proovedores"];
     const cards = options.map((op, key) => {
         return <Col xs={12} md={6} lg={3} key={key} className="d-flex align-items-stretch">
             <Card >
